@@ -311,7 +311,7 @@ int main(){
 	m.cap >>m.src;
     namedWindow("img1",CV_WINDOW_KEEPRATIO);
 	//out.open("out.avi", CV_FOURCC('M', 'J', 'P', 'G'), 15, m.src.size(), true);
-	//waitForPalmCover(&m);
+	waitForPalmCover(&m);
 	//average(&m);
 	//destroyWindow("img1");
 	//initWindows(m);

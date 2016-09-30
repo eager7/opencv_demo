@@ -1,7 +1,8 @@
-# cmake_minimum_required(VERSION <specify CMake version here>)
+cmake_minimum_required(VERSION 2.6)
 project(camera)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-
+find_package(OpenCV REQUIRED)
 set(SOURCE_FILES main.cpp)
 add_executable(camera ${SOURCE_FILES})
+target_link_libraries(camera ${OpenCV_LIBS})
