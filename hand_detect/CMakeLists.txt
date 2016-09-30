@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 2.6)
 set(TARGET "hand_detect")
 project(hand_detect)
+find_package(OpenCV REQUIRED)
 
 SET(CMAKE_BUILD_TYPE "Debug")
 SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb")
@@ -25,4 +26,4 @@ include_directories(
 add_executable(${TARGET} ${SOURCE_FILES})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries( ${TARGET} libopencv_highgui.so )
+target_link_libraries(${TARGET}  ${OpenCV_LIBS})
