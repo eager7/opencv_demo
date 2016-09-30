@@ -312,15 +312,15 @@ int main(){
 	out.open("out.avi", CV_FOURCC('M', 'J', 'P', 'G'), 15, m.src.size(), true);
 	waitForPalmCover(&m);
 	average(&m);
-	//destroyWindow("img1");
-	//initWindows(m);
-	//initTrackbars();
+	destroyWindow("img1");
+	initWindows(m);
+	initTrackbars();
 	for(;;){
-		//hg.frameNumber++;
-		//m.cap >> m.src;
-		//flip(m.src,m.src,1);
-		//pyrDown(m.src,m.srcLR);
-		//blur(m.srcLR,m.srcLR,Size(3,3));
+		hg.frameNumber++;
+		m.cap >> m.src;
+		flip(m.src,m.src,1);
+		pyrDown(m.src,m.srcLR);
+		blur(m.srcLR,m.srcLR,Size(3,3));
 		//cvtColor(m.srcLR,m.srcLR,ORIGCOL2COL);
 		//produceBinaries(&m);
 		//cvtColor(m.srcLR,m.srcLR,COL2ORIGCOL);
@@ -329,7 +329,8 @@ int main(){
 		//showWindows(m);
 		//out << m.src;
 		//imwrite("./images/final_result.jpg",m.src);
-    	if(cv::waitKey(30) == char('q')) break;
+    	imshow("img1",m.srcLR);
+		if(cv::waitKey(30) == char('q')) break;
 	}
 	destroyAllWindows();
 	out.release();
