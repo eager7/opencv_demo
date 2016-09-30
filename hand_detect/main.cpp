@@ -77,13 +77,12 @@ void waitForPalmCover(MyImage* m){
 		}
 		string imgText=string("Cover rectangles with palm");
 		printText(m->src,imgText);	
-		
-		if(i==30){
-		//	imwrite("./images/waitforpalm1.jpg",m->src);
+
+		if(!m->src.empty()){
+			imshow("img1", m->src);
+			out << m->src;
 		}
 
-		imshow("img1", m->src);
-		out << m->src;
         if(cv::waitKey(30) >= 0) break;
 	}
 }
@@ -310,9 +309,9 @@ int main(){
 	init(&m);		
 	m.cap >>m.src;
     namedWindow("img1",CV_WINDOW_KEEPRATIO);
-	//out.open("out.avi", CV_FOURCC('M', 'J', 'P', 'G'), 15, m.src.size(), true);
+	out.open("out.avi", CV_FOURCC('M', 'J', 'P', 'G'), 15, m.src.size(), true);
 	waitForPalmCover(&m);
-	//average(&m);
+	average(&m);
 	//destroyWindow("img1");
 	//initWindows(m);
 	//initTrackbars();
@@ -327,7 +326,7 @@ int main(){
 		//cvtColor(m.srcLR,m.srcLR,COL2ORIGCOL);
 		//makeContours(&m, &hg);
 		//hg.getFingerNumber(&m);
-		showWindows(m);
+		//showWindows(m);
 		//out << m.src;
 		//imwrite("./images/final_result.jpg",m.src);
     	if(cv::waitKey(30) == char('q')) break;
