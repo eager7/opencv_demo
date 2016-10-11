@@ -47,6 +47,15 @@ Mat& ReduceImage(Mat &I, const uchar *const table)
 	return I;
 }
 
+Mat& ReduceImage2(Mat &I, const uchar *const table)
+{
+	uchar *p = I.data;
+	for (int i = 0; i < I.cols * I.rows * I.channels(); ++i) {
+		*p++ = table[*p];
+	}
+	return I;
+}
+
 Mat& ReduceImageIterator(Mat &I, const uchar *const table)
 {
 	CV_Assert(I.depth() != sizeof(uchar));
@@ -97,18 +106,36 @@ int main()
 
 	make_table(50);
 
+	Src = imread("../test.jpg");
+	imshow("test", Src);
+	waitKey();
 	time_start();
 	Mat &R = ReduceImage(Src, table);
 	time_done();
 	imshow("test", R);
 	waitKey();
 
+	Src = imread("../test.jpg");
+	imshow("test", Src);
+	waitKey();
+	time_start();
+	Mat &R2 = ReduceImage2(Src, table);
+	time_done();
+	imshow("test", R2);
+	waitKey();
+
+	Src = imread("../test.jpg");
+	imshow("test", Src);
+	waitKey();
 	time_start();
 	Mat &RI = ReduceImageIterator(Src, table);
 	time_done();
 	imshow("test", RI);
 	waitKey();
 
+	Src = imread("../test.jpg");
+	imshow("test", Src);
+	waitKey();
 	time_start();
 	Mat &RC = ReduceImageCore(Src, table);
 	time_done();
